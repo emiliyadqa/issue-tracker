@@ -1,11 +1,20 @@
+"use client";
 import { Button, TextArea, TextField } from "@radix-ui/themes";
-import React from "react";
+import SimpleMDE from "react-simplemde-editor";
+import "easymde/dist/easymde.min.css";
+import { useMemo } from "react";
 
 const NewIssuePage = () => {
+  const simpleMDEOptions = useMemo(() => {
+    return {
+      status: false,
+    };
+  }, []);
+
   return (
     <div className="max-w-xl space-y-3">
       <TextField.Root placeholder="Title"></TextField.Root>
-      <TextArea placeholder="Description" />
+      <SimpleMDE placeholder="Description" options={simpleMDEOptions} />
       <Button>Add New Issue</Button>
     </div>
   );
