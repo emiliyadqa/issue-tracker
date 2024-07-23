@@ -1,6 +1,6 @@
 "use client";
 import ErrorMessage from "@/app/components/ErrorMessage";
-import { createIssueSchema } from "@/app/validationSchemas";
+import { IssueSchema } from "@/app/validationSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Issue } from "@prisma/client";
 import { Button, Callout, Spinner, TextField } from "@radix-ui/themes";
@@ -16,7 +16,7 @@ import { z } from "zod";
 //   ssr: false,
 // });
 
-type IssueFormData = z.infer<typeof createIssueSchema>;
+type IssueFormData = z.infer<typeof IssueSchema>;
 
 const IssueForm = ({ issue }: { issue?: Issue }) => {
   const simpleMDEOptions = useMemo(() => {
@@ -32,7 +32,7 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
     control,
     formState: { errors },
   } = useForm<IssueFormData>({
-    resolver: zodResolver(createIssueSchema),
+    resolver: zodResolver(IssueSchema),
   });
   const [error, setError] = useState("");
   const [isSubmitting, setSubmitting] = useState(false);
